@@ -22,17 +22,17 @@ router.get('/', (req, res) => {
 });
 
 router.get('/news/add', (req, res) => {
-  res.render('admin/news-form', { title: 'Dodaj news', body: {}, error: {} });
+  res.render('admin/news-form', { title: 'Dodaj news', body: {}, errors: {} });
 });
 
 router.post('/news/add', (req, res) => {
   const body = req.body;
   const newsData = new News(body);
-  const error = newsData.validateSync();
+  const errors = newsData.validateSync();
 
   newsData.save((err) => {
     if(err) {
-      res.render('admin/news-form', {title: 'Dodaj news', error, body});
+      res.render('admin/news-form', {title: 'Dodaj news', errors, body});
       return;
     }
 
@@ -40,7 +40,7 @@ router.post('/news/add', (req, res) => {
   });
 
 
-  res.render('admin/news-form', { title: 'Dodaj news', error, body });
+  res.render('admin/news-form', { title: 'Dodaj news', errors, body });
 });
 
 router.get('/news/delete/:id', (req, res) => {

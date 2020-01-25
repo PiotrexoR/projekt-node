@@ -3,17 +3,17 @@ extends ../layout
 block content
   h1= title
 
-    if error.error !== undefined
-      each message in error.error
+    if errors.errors !== undefined
+      each message in errors.errors
           p=message
 
     form(method='post')
       p
         label Tytuł
-        input(type='text' name='title' value=body.title || '')
+          input(type='text' name='title' value=body.title || '')
 
       p
         label Opis
-        textarea(name='description')=body.description || ''
+          textarea(name='description')=body.description || ''
       p
-        input(type='submit' value='Zapisz')
+          input(type='submit' value='Zapisz')
